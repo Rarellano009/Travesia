@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario Agencia de Viajes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #4b7197, #56cf4b); /* azul a verde */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0
+        }
+        .form-container {
+            background: #ffffff;
+            padding: 20px 30px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+            width: 400px;
+        }
+        .form-container h2 {
+            text-align: center;
+            color: #0077b6;
+            margin-bottom: 20px;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+            color: #333;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+        button {
+            width: 100%;
+            margin-top: 15px;
+            padding: 10px;
+            background: #0096c7;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0077b6;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Reserva tu Viaje</h2>
+        <form id="contactForm" action="confirmación.html" method="get">
+            <label for="nombre">Nombre completo:</label>
+            <input type="text" id="nombre" name="nombre" placeholder="Ej. Juan Pérez" required>
+
+            <label for="correo">Correo electrónico:</label>
+            <input type="email" id="correo" name="correo" placeholder="ejemplo@correo.com" required>
+
+            <label for="telefono">Teléfono:</label>
+            <input type="tel" id="telefono" name="telefono" placeholder="10 dígitos" required>
+
+            <label for="destino">Destino:</label>
+            <select id="destino" name="destino" required>
+                <option value="">-- Selecciona un destino --</option>
+                <option value="cancun">Cancún</option>
+                <option value="loscabos">Los Cabos</option>
+                <option value="mazatlan">Mazatlán</option>
+                <option value="madrid">Madrid</option>
+                <option value="puertovallarta">Pto. Vallarta</option>
+                <option value="monterrey">Monterrey</option>
+            </select>
+
+            <label for="fecha_salida">Fecha de salida:</label>
+            <input type="date" id="fecha_salida" name="fecha_salida" required>
+
+            <label for="fecha_regreso">Fecha de regreso:</label>
+            <input type="date" id="fecha_regreso" name="fecha_regreso" required>
+
+            <label for="paquete">Tipo de paquete:</label>
+            <select id="paquete" name="paquete" required>
+                <option value="">-- Selecciona un paquete --</option>
+                <option value="basico">Básico</option>
+                <option value="premium">Premium</option>
+                <option value="lujo">Lujo</option>
+            </select>
+
+            <label for="comentarios">Comentarios adicionales:</label>
+            <textarea id="comentarios" name="comentarios" rows="3" placeholder="Especifica tus preferencias..."></textarea>
+
+            <button type="submit">Reservar</button> 
+        </form>
+    </div>
+
+    <script>
+        const form = document.getElementById('contactForm');
+        form.addEventListener('submit', function(event) {
+            event.preventDefault(); // Evita el envío por defecto
+            const formData = new FormData(form);
+            const params = new URLSearchParams(formData).toString();
+            window.location.href = `confirmación.html?${params}`;
+        });
+    </script>
+</body>
+</html>

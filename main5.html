@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agencia Travesía</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .hero {
+            background: url('playa.jpeg') no-repeat center center;
+            background-size: cover;
+            height: 90vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+        footer {
+            background-color: #4b7197;
+            padding: 1rem;
+            text-align: center;
+            color: white;
+        }
+        #map {
+            height: 100px;
+            width: 10%;
+            border-radius: 10px;
+        }
+        .social-links li {
+            list-style: none;
+            margin-bottom: 0.5rem;
+        }
+        .social-links a {
+            text-decoration: none;
+            color: #4b7197;
+        }
+        .about-section {
+            margin-top: 5rem;
+        }
+        .contact-form {
+            border: 2px solid black;
+            border-radius: 10px;
+            padding: 20px;
+            background-color: white;
+            margin-top: 20px;
+        }
+        .contact-form h4 {
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV PRINCIPAL -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="main2.html">Travesía</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="menuNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="main.html">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="main5.html">Acerca de</a></li>
+                    <li class="nav-item"><a class="nav-link" href="main4.html">Paquetes</a></li>
+                    <li class="nav-item"><a class="nav-link" href="main3.html">Ofertas</a></li>
+                    <li class="nav-item"><a class="nav-link" href="main62.html">Reservas</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- SECCIÓN ACERCA DE -->
+    <section class="container about-section">
+        <div class="row align-items-start">
+            <div class="col-md-6">
+                <h1 class="mb-3">Acerca de</h1>
+                <h3 class="mb-3">Fundación de Travesía</h3>
+                <p>Travesía es una empresa creada con el interés de ofrecer experiencias a personas que están cansadas de la rutina y quieren algo diferente. Buscamos llevar a los clientes a destinos que cumplan sus deseos y necesidades.</p>
+                <p>Sus fundadores Wendoline Fonseca y Rodrigo Arellano identificaron que muchas personas no descansan adecuadamente en sus días libres debido al trabajo. Por eso crearon Travesía, para ofrecer un espacio donde cada persona pueda disfrutar como lo desea.</p>
+                
+                
+
+                <!-- FORMULARIO DE CONTACTO -->
+                <div class="contact-form">
+                    <h4>Contáctanos</h4>
+                    <form id="contactForm">
+                        <div class="row mb-3">
+                            <div class="col">
+                                <input type="text" class="form-control" id="nombre" placeholder="Nombre" required>
+                            </div>
+                            <div class="col">
+                                <input type="text" class="form-control" id="apellido" placeholder="Apellido" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <input type="email" class="form-control" id="correo" placeholder="Correo electrónico" required>
+                        </div>
+                        <div class="mb-3">
+                            <textarea class="form-control" id="mensaje" rows="4" placeholder="Tu mensaje" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Enviar</button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-6 text-center">
+                <img src="avion2.jpg" class="img-fluid rounded" alt="avion" style="max-width: 350px; height: auto;">
+            </div>
+        </div>
+
+        <!-- Mapa -->
+        <div class="mt-4 ratio ratio-16x9">
+          <iframe
+            src="https://maps.google.com/maps?q=Mexico%20City&t=&z=13&ie=UTF8&iwloc=&output=embed"
+            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+       
+
+
+    <!-- REDES SOCIALES -->
+                <h4 class="mt-4">Redes Sociales</h4>
+                <ul class="social-links">
+                    <li><a href="https://www.facebook.com/?locale=es_LA" target="_blank">Facebook</a></li>
+                    <li><a href="https://www.instagram.com/" target="_blank">Instagram</a></li>
+                    <li><a href="mailto:contacto@travesia.com">Correo</a></li>
+                </ul>
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2025 Agencia Travesía | Todos los derechos reservados</p>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- SCRIPT PARA ENVIAR A WHATSAPP -->
+    <script>
+    document.getElementById("contactForm").addEventListener("submit", function(e) {
+        e.preventDefault();
+        const nombre = document.getElementById("nombre").value;
+        const apellido = document.getElementById("apellido").value;
+        const correo = document.getElementById("correo").value;
+        const mensaje = document.getElementById("mensaje").value;
+
+        const texto = `Hola, mi nombre es ${nombre} ${apellido}. Correo: ${correo}. Mensaje: ${mensaje}`;
+        const url = `https://wa.me/5215615750741?text=${encodeURIComponent(texto)}`;
+        
+        window.open(url, "_blank");
+    });
+    </script>
+</body>
+</html>

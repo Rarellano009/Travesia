@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Confirmación de Reserva</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: #f4f4f9;
+      font-family: Arial, sans-serif;
+    }
+    .card {
+      border-radius: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container my-5">
+    <div class="card shadow p-4">
+      <h2 class="mb-4 text-center text-success">✅ Reserva Confirmada</h2>
+      <p><strong>Código de Reserva:</strong> <span id="res_codigo"></span></p>
+      <p><strong>Fecha y hora de confirmación:</strong> <span id="res_fechaHora"></span></p>
+      <hr>
+      <p><strong>Nombre:</strong> <span id="res_nombre"></span></p>
+      <p><strong>Correo:</strong> <span id="res_correo"></span></p>
+      <p><strong>Teléfono:</strong> <span id="res_telefono"></span></p>
+      <p><strong>Destino:</strong> <span id="res_destino"></span></p>
+      <p><strong>Paquete:</strong> <span id="res_paquete"></span></p>
+      <p><strong>Precio total:</strong> <span id="res_precio"></span></p>
+      <p><strong>Personas:</strong> <span id="res_personas"></span></p>
+      <p><strong>Fecha de salida:</strong> <span id="res_fecha_salida"></span></p>
+      <p><strong>Fecha de regreso:</strong> <span id="res_fecha_regreso"></span></p>
+      <p><strong>Comentarios:</strong> <span id="res_comentarios"></span></p>
+      <div class="text-center mt-4">
+        <button class="btn btn-primary" onclick="guardarReserva()">💾 Guardar Reserva</button>
+        <a href="form622.html" class="btn btn-secondary">Hacer otra reserva</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+
+    // Generar código único de reserva
+    const fecha = new Date();
+    const codigo = "TRV-" + fecha.getFullYear() + "-" + Math.floor(Math.random()*1000).toString().padStart(3,"0");
+    
+    // Formatear fecha y hora
+    const opciones = { year: 'numeric', month: '2-digit', day: '2-digit',
+                       hour: '2-digit', minute: '2-digit', second: '2-digit' };
+    const fechaHora = fecha.toLocaleDateString('es-MX', opciones);
+
+    const reserva = {
+      codigo: codigo,
+      fechaHora: fechaHora,
+      nombre: params.get("nombre") || "No especificado",
+      correo: params.get("correo") || "No especificado",
+      telefono: params.get("telefono") || "No especificado",
+      destino: params.get("destino") || "No especificado",
+      paquete: params.get("paquete") || "No especificado",
+      precio: params.get("precioTotal") || params.get("precio") || "No especificado",
+      personas: params.get("personas") || "1",
+      fecha_salida: params.get("fecha_salida") || "No especificada",
+      fecha_regreso: params.get("fecha_regreso") || "No especificada",
+      comentarios: params.get("comentarios") || "Sin comentarios"
+    };
+
+    // Mostrar en pantalla
+    document.getElementById("res_codigo").textContent = reserva.codigo;
+    document.getElementById("res_fechaHora").textContent = reserva.fechaHora;
+    document.getElementById("res_nombre").textContent = reserva.nombre;
+    document.getElementById("res_correo").textContent = reserva.correo;
+    document.getElementById("res_telefono").textContent = reserva.telefono;
+    document.getElementById("res_destino").textContent = reserva.destino;
+    document.getElementById("res_paquete").textContent = reserva.paquete;
+    document.getElementById("res_precio").textContent = reserva.precio;
+    document.getElementById("res_personas").textContent = reserva.personas;
+    document.getElementById("res_fecha_salida").textContent = reserva.fecha_salida;
+    document.getElementById("res_fecha_regreso").textContent = reserva.fecha_regreso;
+    document.getElementById("res_comentarios").textContent = reserva.comentarios;
+
+    // Guardar como archivo TXT con código + fecha
+    function guardarReserva() {
+      const contenido = `
+      Reserva Confirmada
+      -------------------------
+      Código: ${reserva.codigo}
+      Fecha y hora: ${reserva.fechaHora}
+
+      Nombre: ${reserva.nombre}
+      Correo: ${reserva.correo}
+      Teléfono: ${reserva.telefono}
+      Destino: ${reserva.destino}
+      Paquete: ${reserva.paquete}
+      Personas: ${reserva.personas}
+      Precio total: ${reserva.precio}
+      Fecha de salida: ${reserva.fecha_salida}
+      Fecha de regreso: ${reserva.fecha_regreso}
+      Comentarios: ${reserva.comentarios}
+      `;
+      
+      const blob = new Blob([contenido], { type: "text/plain;charset=utf-8" });
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = `reserva-${reserva.codigo}.txt`;
+      link.click();
+    }
+  </script>
+</body>
+</html>

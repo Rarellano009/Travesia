@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agencia Travesía</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .hero {
+            background: url('descubre.jpg') no-repeat center center;
+            background-size: cover;
+            height: 90vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: rgb(10, 10, 10);
+            text-align: center;
+        }
+        footer {
+            background-color: #f8f9fa;
+            padding: 1rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV PRINCIPAL -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="main2.html">Travesía</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        <div class="collapse navbar-collapse" id="menuNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="main.html">Inicio</a></li>
+                <li class="nav-item"><a class="nav-link" href="main5.html">Acerca de</a></li>
+                <li class="nav-item"><a class="nav-link" href="main4.html">Paquetes</a></li>
+                <li class="nav-item"><a class="nav-link" href="main3.html">Ofertas</a></li>
+                <li class="nav-item"><a class="nav-link" href="main62.html">Reservas</a></li>
+            </ul>
+        </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div>
+            <h1>Travesia</h1>
+            <p>Tu viaje a tus vacaciones</p>
+            <a href="main4.html" class="btn btn-danger btn-lg mt-3">Descubre</a>
+        </div>
+    </section>
+
+    <!-- SECCIÓN DE ARTÍCULOS -->
+    <section class="container my-5">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <h2>Paquete Cancun</h2>
+                <p>Viaje redondo, estadia y opcionales a Cancún, México</p>
+                <a href="form622.html" class="btn btn-dark btn-lg mt-3">Reservar</a>
+                <a href="main3.html" class="btn btn-outline-dark btn-lg mt-3">Opciones</a>
+            </div>
+            <div class="col-md-6 text-center">
+                <img src="cancun.jpg" class="img-fluid rounded" alt="cancun" 
+                style="max-width: 300px; height: auto;">
+            </div>
+        </div>
+    
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <img src="mexico-4540439_1280.jpg" class="img-fluid rounded" alt="Vallarta" 
+                style="max-width: 300px; height: auto;">
+                
+            </div>
+            <div class="col-md-6 text-center">
+                <h2>Puerto Vallarta</h2>
+                <p>Viaje redondo, estadia y actividades opcionales a Puerto Vallarta, México</p>
+                <a href="form622.html" class="btn btn-dark btn-lg mt-3">Reservar</a>
+                <a href="main3.html" class="btn btn-outline-dark btn-lg mt-3">Opciones</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="container my-5">
+        <h1>COMPLEMENTA TU EXPERIENCIA</h1>
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <img src="waterfall-1514142_1920.jpg" class="img-fluid rounded" alt="selva" 
+                style="width: 500px; height: 600px;">
+                <h4>Aventura en la selva</h4>
+                <p>Adentrate en la selva y descubre las maravillas de la natualeza</p>
+                <h4>$650.00 x persona</h4>
+                <button class="btn btn-sm btn-dark btn-reservar" onclick="reservarAhora('Aventura en la selva', 650)">Reservar</button>
+            </div>
+            <div class="col-md-6 text-align">
+                <img src="pueblomagico.jpg" class="img-fluid rounded" alt="pueblomagico" 
+                style="width: 300px; height: 200px;">
+                <h4>Visita a pueblos magicos</h4>
+                <p>Visita los pueblos mas bellos cerca de tu destno y conoce la maravillosa historia que esconden</p>
+                <h4>$450.00 x persona</h4>
+                <button class="btn btn-sm btn-dark btn-reservar" onclick="reservarAhora('Pueblo magico', 450)">Reservar</button>
+
+                <img src="cena rom.jpg" class="img-fluid rounded" alt="romantica" 
+                style="width: 300px; height: 200px;">
+                <h4>Cena romantica en la playa </h4>
+                <p>Date la oportunidad de la cena de tus sueños con una de las vistas mas hermosas </p>
+                <h4>$800.00</h4>
+                <button class="btn btn-sm btn-dark btn-reservar" onclick="reservarAhora('Cena romantica', 800)">Reservar</button>
+            </div>
+        </div>
+        
+        
+        
+
+    </section>
+
+    <section class="container my-5">
+        <h2>Seguridad</h2>
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                
+                <h5>Prestigio</h5>
+                <p>Tenemos afiliación hoteles con mas de 180 paises.</p>
+
+                <h5>Protección</h5>
+                <p>Protegemos tus datos personales y nos compremetemos con la seguridad de cada uno de nuestros clientes.</p>
+
+            </div>
+            <div class="col-md-6 text-align">
+                
+                <h5>Enfocado al cliente</h5>
+                <p>Las experiencias son personalizadas y hechas para cada usuario dependiendo sus interes, dandonos la psoibilidad de una cercania con el cliente.</p>
+
+                <h5>Disponibilidad de fechas</h5>
+                <p>Ofrecemos las mejores fechas para que puedas disfrutar tus vacaciones en el momento que desees.</p>
+            </div>
+        </div>
+        
+        
+        
+
+    </section>
+
+    <h4 class="mt-4">Redes Sociales</h4>
+                <ul class="social-links">
+                    <li><a href="https://www.facebook.com/?locale=es_LA" target="_blank">Facebook</a></li>
+                    <li><a href="https://www.instagram.com/" target="_blank">Instagram</a></li>
+                    <li><a href="mailto:contacto@travesia.com">Correo</a></li>
+                </ul>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2025 Agencia Travesía | Todos los derechos reservados</p>
+    </footer>
+    <!-- SCRIPTS -->
+    <script>
+        function reservarAhora(nombre, precio) {
+            window.location.href = `main62.html?nombre=${encodeURIComponent(nombre)}&precio=${precio}`;
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
