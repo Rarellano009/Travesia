@@ -12,6 +12,10 @@
             text-align: center;
             color: #fff;
         }
+
+        .modal-body {
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -28,91 +32,128 @@
                 <li class="nav-item"><a class="nav-link" href="main5.html">Acerca de</a></li>
                 <li class="nav-item"><a class="nav-link" href="main4.html">Paquetes</a></li>
                 <li class="nav-item"><a class="nav-link" href="main3.html">Ofertas</a></li>
-                <li class="nav-item"><a class="nav-link active" href="main62.html">Reservas</a></li>
+                <li class="nav-item"><a class="nav-link" href="main6.html">Reservas</a></li>
             </ul>
         </div>
-        </div>
+    </div>
     </nav>
 
-  <div class="container my-5">
-    <h2 class="mb-4">Formulario de Reserva de Paquete</h2>
-    <form id="paqueteForm" action="confirmacion.html" method="get">
-      <div class="mb-3">
-        <label class="form-label">Paquete</label>
-        <input type="text" id="paquete" name="paquete" class="form-control" readonly>
-      </div>
-      <div class="mb-3">
-        <label class="form-label">Precio base (por persona)</label>
-        <input type="text" id="precio" name="precio" class="form-control" readonly>
-      </div>
-      <div class="mb-3">
-        <label class="form-label">Número de personas</label>
-        <input type="number" id="personas" name="personas" class="form-control" value="1" min="1" required>
-      </div>
-      <div class="mb-3">
-        <label class="form-label">Precio total</label>
-        <input type="text" id="precioTotal" name="precioTotal" class="form-control" readonly>
-      </div>
-      <div class="mb-3">
-        <label class="form-label">Nombre</label>
-        <input type="text" name="nombre" class="form-control" placeholder="Escribe tu nombre" required>
-      </div>
-      <div class="mb-3">
-        <label class="form-label">Correo</label>
-        <input type="email" name="correo" class="form-control" placeholder="ejemplo@email.com" required>
-      </div>
-      <button type="submit" class="btn btn-primary">Confirmar Reserva</button>
-    </form>
+    <!-- CONTENT -->
+    <section class="container my-5 py-5">
+        <h2 class="text-center mb-4">Confirmar Reserva</h2>
 
-    <!-- Alerta de confirmación -->
-    <div id="alerta" class="alert alert-success mt-4 d-none" role="alert">
-      🎉 ¡Tu reserva ha sido realizada con éxito!
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <form id="paqueteForm">
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label">Nombre Completo</label>
+                        <input type="text" class="form-control" id="nombre" name="nombre" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Correo Electrónico</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="paquete" class="form-label">Paquete</label>
+                        <input type="text" class="form-control" id="paquete" name="paquete" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="precio" class="form-label">Precio por Persona</label>
+                        <input type="text" class="form-control" id="precio" name="precio" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="personas" class="form-label">Número de Personas</label>
+                        <input type="number" class="form-control" id="personas" name="personas" min="1" value="1" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="precioTotal" class="form-label">Precio Total</label>
+                        <input type="text" class="form-control fw-bold" id="precioTotal" name="precioTotal" readonly>
+                    </div>
+
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary">Confirmar Reserva</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal de confirmación -->
+    <div class="modal fade" id="confirmacionModal" tabindex="-1" aria-labelledby="confirmacionModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmacionModalLabel">¡Reserva Confirmada!</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Tu reserva ha sido procesada con éxito.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 
-  <script>
-    // Obtener parámetros de la URL
-    const params = new URLSearchParams(window.location.search);
-    const nombre = params.get("nombre");
-    const precio = params.get("precio");
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2025 Agencia Travesía | Todos los derechos reservados</p>
+    </footer>
 
-    // Asignar valores base
-    if (nombre) document.getElementById("paquete").value = nombre;
-    if (precio) {
-      document.getElementById("precio").value = `$${precio}`;
-      calcularTotal();
-    }
+    <!-- SCRIPTS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const nombre = urlParams.get("nombre");
+            const precioBase = parseFloat(urlParams.get("precio"));
 
-    // Recalcular precio total según número de personas
-    const personasInput = document.getElementById("personas");
-    personasInput.addEventListener("input", calcularTotal);
+            if (nombre) {
+                document.getElementById("paquete").value = nombre;
+            }
 
-    function calcularTotal() {
-      const precioBase = parseFloat(precio) || 0;
-      const personas = parseInt(personasInput.value) || 1;
-      const total = precioBase * personas;
-      document.getElementById("precioTotal").value = `$${total}`;
-    }
+            if (!isNaN(precioBase)) {
+                document.getElementById("precio").value = `$${precioBase}`;
+            }
 
-    // Mostrar alerta de confirmación al enviar
-    const form = document.getElementById("paqueteForm");
-    form.addEventListener("submit", function(event) {
-      event.preventDefault();
-      document.getElementById("alerta").classList.remove("d-none");
+            const personasInput = document.getElementById("personas");
+            const precioTotalInput = document.getElementById("precioTotal");
 
-      // Redirigir a confirmacion.html con los datos
-      const formData = new FormData(form);
-      const queryString = new URLSearchParams(formData).toString();
-      setTimeout(() => {
-        window.location.href = `confirmacion.html?${queryString}`;
-      }, 1500); // 1.5s para mostrar el aviso
-    });
-  </script>
+            function calcularTotal() {
+                const personas = parseInt(personasInput.value) || 1;
+                const total = precioBase * personas;
+                precioTotalInput.value = `$${total.toFixed(2)}`;
+            }
 
-  <footer>
-      <p>&copy; 2025 Agencia Travesía | Todos los derechos reservados</p>
-  </footer>
+            // Llamar a la función al cargar la página para establecer el total inicial
+            if (!isNaN(precioBase)) {
+                calcularTotal();
+            }
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+            // Escuchar los cambios en el número de personas para actualizar el total
+            personasInput.addEventListener("input", calcularTotal);
+
+            const form = document.getElementById("paqueteForm");
+            form.addEventListener("submit", function(event) {
+                event.preventDefault();
+
+                // Validar el formulario con la API de validación de HTML5
+                if (form.checkValidity()) {
+                    // Si el formulario es válido, mostrar el modal de confirmación
+                    const confirmacionModal = new bootstrap.Modal(document.getElementById('confirmacionModal'));
+                    confirmacionModal.show();
+
+                    // Opcional: limpiar el formulario después de la confirmación
+                    form.reset();
+                    // Volver a calcular el total para restablecer a 1 persona
+                    if (!isNaN(precioBase)) {
+                        calcularTotal();
+                    }
+                }
+                // Si el formulario no es válido, el navegador mostrará su mensaje de error estándar
+            });
+        });
+    </script>
 </body>
 </html>
